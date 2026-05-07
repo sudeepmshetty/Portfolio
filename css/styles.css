@@ -35,7 +35,7 @@
   }
   
   .navbar {
-    background-color: rgba(248, 249, 250, 0.7);
+    background-color: rgb(248 249 250 / 0.7);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
   }
@@ -378,7 +378,7 @@
       color: #fff;
     }
     .navbar {
-      background-color: rgb(51, 58, 66, 0.7);
+      background-color: rgb(51 58 66 / 0.7);
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
     }
@@ -395,8 +395,8 @@
     }
   
     .navbar-toggler {
-      color: rgba(255, 255, 255, 0.55);
-      border-color: rgba(255, 255, 255, 0.1);
+      color: rgb(255 255 255 / 0.55);
+      border-color: rgb(255 255 255 / 0.1);
     }
   }
   
@@ -404,7 +404,7 @@
     color: #ef5350;
   }
   .highlight-orange {
-    color: rgba(253, 149, 90, 0.8);
+    color: rgb(253 149 90 / 0.8);
   }
   .highlight-pink {
     color: blueviolet;
@@ -412,14 +412,15 @@
   .highlight-blue {
     color: #6ac4ff;
   }
-
+ 
 .holopin-badge-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px; /* Adjust as needed */
 }
-
+ 
 .holopin-badge-container img {
   max-width: 100%;
   height: auto;
 }
+ 
