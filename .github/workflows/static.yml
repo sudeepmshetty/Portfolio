@@ -1,43 +1,95 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: CI/CD — Build, Validate & Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # ─────────────────────────────────────────────
+  # JOB 1: Lint & Validate
+  # ─────────────────────────────────────────────
+  lint-and-validate:
+    name: Lint & Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install htmlhint
+        run: npm install -g htmlhint
+
+      - name: Lint HTML
+        run: htmlhint index.html --config .htmlhintrc
+
+      - name: Install stylelint
+        run: npm install -g stylelint stylelint-config-standard
+
+      - name: Lint CSS
+        run: stylelint "css/**/*.css" --config .stylelintrc.json
+
+      - name: Check for broken internal links
+        run: |
+          echo "Checking internal anchor links..."
+          node -e "
+            const fs = require('fs');
+            const html = fs.readFileSync('index.html', 'utf8');
+            const anchors = [...html.matchAll(/href=\"(#[^\"]+)\"/g)].map(m => m[1].slice(1));
+            const ids = [...html.matchAll(/id=\"([^\"]+)\"/g)].map(m => m[1]);
+            const broken = anchors.filter(a => !ids.includes(a));
+            if (broken.length) {
+              console.error('Broken anchor links:', broken);
+              process.exit(1);
+            }
+            console.log('All internal links are valid:', anchors);
+          "
+
+  # ─────────────────────────────────────────────
+  # JOB 2: Deploy (only on push to main)
+  # ─────────────────────────────────────────────
   deploy:
+    name: Deploy to GitHub Pages
+    needs: lint-and-validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: "."
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Print deployed URL
+        run: echo "Deployed to ${{ steps.deployment.outputs.page_url }}"
