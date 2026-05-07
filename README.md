@@ -70,11 +70,11 @@ This portfolio is built with:
  
 | Certification | Issuer | Status |
 |---------------|--------|--------|
-| AWS Cloud Practitioner | Amazon Web Services | ✅ Certified |
-| GCP Cloud Digital Leader | Google Cloud | ✅ Certified |
-| Microsoft AZ-104 | Microsoft Azure | ✅ Certified |
-| GitHub Foundations Certification | GitHub | ✅ Certified |
-| LFS101: Introduction to Linux | The Linux Foundation | ✅ Certified |
+| [AWS Certified Cloud Practitioner](https://www.credly.com/badges/fe767667-71de-4af1-895c-c63e1a034667/linked_in_profile) | Amazon Web Services | ✅ Certified |
+| [GCP Cloud Digital Leader](https://www.credly.com/badges/f96512b8-ffce-4140-b468-d30f0cd9fd36/linked_in_profile) | Google Cloud | ✅ Certified |
+| [Microsoft Certified: Azure Administrator Associate (Microsoft AZ-104)](https://learn.microsoft.com/api/credentials/share/en-in/SUDEEPMSHETTY-1829/D24D1328F11A62EC?sharingId=38D9A10930CFD076) | Microsoft Azure | ✅ Certified |
+| [GitHub Foundations Certification](https://www.credly.com/badges/23736a78-9564-43fa-a1df-73fb47d9f79c/public_url) | GitHub | ✅ Certified |
+| [LFS101: Introduction to Linux](https://www.credly.com/badges/06455e2a-a63e-43e3-be72-71e7466009c2/public_url) | The Linux Foundation | ✅ Certified |
 | AWS Developer Associate | Amazon Web Services | 🔄 In Progress |
 | [GitLab 101 Certification](https://university.gitlab.com/c/xa4_TWijS_KeG-fziX0-6A) | GitLab Inc. | ✅ May 2024 |
 | [Introduction to Cybersecurity](https://www.credly.com/badges/1faa6068-b65c-4178-9a0f-607c7d5878ca/public_url) | Cisco Network Academy | ✅ Jul 2023 |
